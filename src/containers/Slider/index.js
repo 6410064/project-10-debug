@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useData } from "../../contexts/DataContext";
 import { getMonth } from "../../helpers/Date";
@@ -11,18 +10,15 @@ const Slider = () => {
   const byDateDesc = data?.focus.sort((evtA, evtB) =>
     new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
   );
-
   const nextCard = () => {
-    setIndex((prevIndex) => (prevIndex < byDateDesc.length - 1 ? prevIndex + 1 : 0));
+    setTimeout(
+      () => setIndex(index < byDateDesc.length ? index + 1 : 0),
+      5000
+    );
   };
-
   useEffect(() => {
-    const intervalId = setInterval(nextCard, 5000);
-
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, []);
+    nextCard();
+  });
   return (
     <div className="SlideCardList">
       {byDateDesc?.map((event, idx) => (
