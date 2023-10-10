@@ -63,6 +63,7 @@ describe("When a select is created", () => {
             cancelable: true,
           })
         );
+        // vérifie que onChange a bien été appelé 1 fois 
         expect(onChange.mock.calls.length).toBeGreaterThan(0);
 
         fireEvent(
